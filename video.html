@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #videoElement {
+            width: 100%;
+            position: fixed;
+    top: -200px; right: 0; bottom: 0; left: 0;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay="true" id="videoElement"></video>
+    <script>
+        var video = document.querySelector("#videoElement");
+
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (err0r) {
+                    console.log("Something went wrong!");
+                });
+        }
+    </script>
+    <script>
+        var keysPressed = [];
+    var keyUrlMap = {
+        'm': 'https://mail.google.com',
+        'do': 'https://docs.google.com',
+        's': 'https://slides.google.com',
+        'c': 'https://classroom.google.com',
+        'dr': 'https://drive.google.com',
+        'o': 'https://outlook.office.com/mail/?actSwt=true',
+        'bl': 'https://csuniv.blackboard.com/?new_loc=%2Fultra%2Fcourse',
+        'l': 'https://library.csuniv.edu',
+        'k': 'https://www.khanacademy.org',
+        'br': 'https://www.brainscape.com'
+        
+    };
+    
+    document.addEventListener('keydown', function(event) {
+        keysPressed.push(event.key);
+    
+        for (var key in keyUrlMap) {
+            if (key.split('').every(k => keysPressed.includes(k))) {
+                window.location.href = keyUrlMap[key];
+                break;
+            }
+        }
+    });
+    </script>
+</body>
+</html>

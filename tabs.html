@@ -1,0 +1,14 @@
+<script>
+var keysPressed = [];
+
+document.addEventListener('keydown', function(event) {
+    keysPressed.push(event.key);
+    
+
+    if (keysPressed.includes('k')) {
+        window.location.href = "https://www.khanacademy.org";
+    } else if (keysPressed.includes('d') && keysPressed.includes('o')) {
+        window.location.href = "https://docs.google.com";
+    }
+});
+</script>

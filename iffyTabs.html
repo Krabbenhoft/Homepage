@@ -1,0 +1,27 @@
+<script>
+    var keysPressed = [];
+var keyUrlMap = {
+    'm': 'https://mail.google.com',
+    'do': 'https://docs.google.com',
+    's': 'https://slides.google.com',
+    'c': 'https://classroom.google.com',
+    'dr': 'drive.google.com',
+    'o': 'https://outlook.office.com/mail/?actSwt=true',
+    'bl': 'https://csuniv.blackboard.com/?new_loc=%2Fultra%2Fcourse',
+    'l': 'https://library.csuniv.edu',
+    'k': 'https://www.khanacademy.org',
+    'br': 'https://www.brainscape.com'
+    
+};
+
+document.addEventListener('keydown', function(event) {
+    keysPressed.push(event.key);
+
+    for (var key in keyUrlMap) {
+        if (key.split('').every(k => keysPressed.includes(k))) {
+            window.location.href = keyUrlMap[key];
+            break;
+        }
+    }
+});
+</script>
